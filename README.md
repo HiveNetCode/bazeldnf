@@ -37,7 +37,7 @@ unchanged.
 http_archive(
     name = "bazeldnf",
     sha256 = "<sha256 of the tag archive>",
-    strip_prefix = "bazeldnf-v0.5.9-2-hc1",
+    strip_prefix = "bazeldnf-0.5.9-2-hc1",
     url = "https://github.com/HiveNetCode/bazeldnf/archive/refs/tags/v0.5.9-2-hc1.tar.gz",
 )
 ```
