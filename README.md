@@ -36,8 +36,8 @@ unchanged.
 ```starlark
 http_archive(
     name = "bazeldnf",
-    sha256 = "<sha256 of the tag archive>",
-    strip_prefix = "bazeldnf-0.5.9-2-hc1",
-    url = "https://github.com/HiveNetCode/bazeldnf/archive/refs/tags/v0.5.9-2-hc1.tar.gz",
+    sha256 = "373dc68748a3ec74bb0880bc8369000950af1bdb69ac6404247a004742c2dc3b",
+    strip_prefix = "bazeldnf-0.5.9-2-hc2",
+    url = "https://github.com/HiveNetCode/bazeldnf/archive/refs/tags/v0.5.9-2-hc2.tar.gz",
 )
 ```
