@@ -16,3 +16,4 @@ MODULE.bazel.lock
 
 # this is where we store the release artifacts, so we can ignore it
 tools/release/latest
+bazeldnf-*.linux-amd64
