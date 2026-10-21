@@ -1,0 +1,61 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library")
+load("//bazeldnf:toolchain.bzl", "bazeldnf_toolchain")
+
+go_library(
+    name = "cmd_lib",
+    srcs = [
+        "bazeldnf.go",
+        "fetch.go",
+        "filter.go",
+        "init.go",
+        "ldd.go",
+        "prune.go",
+        "reduce.go",
+        "resolve.go",
+        "root.go",
+        "rpm2tar.go",
+        "rpmtree.go",
+        "sandbox.go",
+        "tar2files.go",
+        "verify.go",
+        "xattr.go",
+    ],
+    importpath = "github.com/rmohr/bazeldnf/cmd",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//cmd/template",
+        "//pkg/api",
+        "//pkg/api/bazeldnf",
+        "//pkg/bazel",
+        "//pkg/ldd",
+        "//pkg/order",
+        "//pkg/reducer",
+        "//pkg/repo",
+        "//pkg/rpm",
+        "//pkg/sat",
+        "//pkg/xattr",
+        "@com_github_bazelbuild_buildtools//build:go_default_library",
+        "@com_github_sassoftware_go_rpmutils//:go-rpmutils",
+        "@com_github_sirupsen_logrus//:logrus",
+        "@com_github_spf13_cobra//:cobra",
+        "@org_golang_x_crypto//openpgp",
+    ],
+)
+
+go_binary(
+    name = "cmd",
+    embed = [":cmd_lib"],
+    pure = "on",
+    visibility = ["//visibility:public"],
+)
+
+bazeldnf_toolchain(
+    name = "host-toolchain",
+    tool = ":cmd",
+)
+
+toolchain(
+    name = "bazeldnf-host-toolchain",
+    toolchain = ":host-toolchain",
+    toolchain_type = "//bazeldnf:toolchain_type",
+)

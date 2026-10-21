@@ -1,0 +1,18 @@
+/bazel-*
+/e2e/*/bazel-*
+/.idea
+repo.yaml
+.bazeldnf
+dist
+cmd/cmd
+.bazelrc.user
+
+# release artifacts
+artifacts
+bazeldnf-v*
+
+# temporary files from MODULE.bazel
+MODULE.bazel.lock
+
+# this is where we store the release artifacts, so we can ignore it
+tools/release/latest

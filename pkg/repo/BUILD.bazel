@@ -1,0 +1,32 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "repo",
+    srcs = [
+        "cache.go",
+        "fetch.go",
+        "init.go",
+    ],
+    importpath = "github.com/rmohr/bazeldnf/pkg/repo",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/api",
+        "//pkg/api/bazeldnf",
+        "//pkg/rpm",
+        "@com_github_adrg_xdg//:xdg",
+        "@com_github_sirupsen_logrus//:logrus",
+        "@com_github_spf13_cobra//:cobra",
+        "@io_k8s_sigs_yaml//:yaml",
+    ],
+)
+
+go_test(
+    name = "repo_test",
+    srcs = [
+        "fetch_test.go",
+        "repo_test.go",
+    ],
+    data = glob(["testdata/**"]),
+    embed = [":repo"],
+    deps = ["//pkg/api"],
+)

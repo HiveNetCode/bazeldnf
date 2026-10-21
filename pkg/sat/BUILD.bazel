@@ -1,0 +1,43 @@
+load("@rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "sat",
+    srcs = ["sat.go"],
+    importpath = "github.com/rmohr/bazeldnf/pkg/sat",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//pkg/api",
+        "//pkg/reducer",
+        "//pkg/rpm",
+        "@com_github_crillab_gophersat//bf",
+        "@com_github_crillab_gophersat//explain",
+        "@com_github_crillab_gophersat//maxsat",
+        "@com_github_sirupsen_logrus//:logrus",
+        "@org_golang_x_exp//maps",
+        "@org_golang_x_exp//slices",
+    ],
+)
+
+# gazelle:go_test file
+
+go_test(
+    name = "sat_test",
+    srcs = ["sat_test.go"],
+    data = glob(["testdata/**"]),
+    embed = [":sat"],
+    deps = [
+        "//pkg/api",
+        "@com_github_onsi_gomega//:gomega",
+    ],
+)
+
+go_test(
+    name = "sat_determinsitic_test",
+    srcs = ["sat_determinsitic_test.go"],
+    data = glob(["testdata/**"]),
+    embed = [":sat"],
+    deps = [
+        "//pkg/api",
+        "@com_github_onsi_gomega//:gomega",
+    ],
+)
